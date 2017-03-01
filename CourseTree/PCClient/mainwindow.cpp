@@ -9,6 +9,7 @@
 #include <QUrl>
 #include <QDesktopServices>
 #include <QMessageBox>
+#include <QInputDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -49,7 +50,6 @@ void MainWindow::on_ServiceGithub_triggered()
 void MainWindow::on_FunCourseTree_triggered()
 {
     CourseTree *p;
-    QString queryname;
     if(BuildCourseTree() == false)
     {
         QMessageBox::information(this,"error","No File");
@@ -57,13 +57,23 @@ void MainWindow::on_FunCourseTree_triggered()
     }
     else
     {
-        // Dialog
-        if((p = QueryCourse(queryname)) == nullptr)
+        bool ok;
+        QString name = QInputDialog::getText(NULL,QObject::tr("查询"),QObject::tr("请输入正确课程名"),QLineEdit::Normal,QString(),&ok);
+        if(!ok)// click cancle
+            return;
+        // click ok
+        if(name.isEmpty())
         {
-            QMessageBox::information(this, "error", "No Such Course");
+            QMessageBox::information(this,"error","输入为空");
             return;
         }
-        // Web Page
-        DataVisualization(p);
+        else if((p = QueryCourse(name)) == nullptr)
+        {
+            QMessageBox::information(this,"error","查无此课程");
+        }
+        else
+        {
+            //Web Page,use p
+        }
     }
 }
