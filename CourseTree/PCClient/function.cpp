@@ -22,7 +22,8 @@ bool BuildCourseTree(void)
     {
         return false;
     }
-    char perline[10]; // one course dependence, max 10
+    char perline[30]; // one course dependence, max 30
+    int id;
     char *p = perline;
     int i = 0;
     CourseRoot[i] = new CourseTree;
@@ -35,6 +36,7 @@ bool BuildCourseTree(void)
         CourseTree *tmp,*pre;
         fgets(perline,10,fp); // will be read 9 records;
         p = perline;
+        while(isspace(*p)) p++;
         if(perline[0] == '\n')
         {
             i++;
@@ -43,23 +45,32 @@ bool BuildCourseTree(void)
             CourseRoot[i]->sibling = nullptr;
             continue;
         }
-        root = FindRoot(*p, i);
-        root->CourseId = *p;
+        sscanf(p,"%d",&id);
+        root = FindRoot(id, i);
+        root->CourseId = id;
+        while(isdigit(*p)) p++;
         if(*++p != '\n')
         {
+            while(isspace(*p)) p++;
             pre = root->child;
             pre = new CourseTree;
-            pre->CourseId = *p;
+            sscanf(p,"%d",&id);
+            pre->CourseId = id;
             pre->child = nullptr;
             pre->sibling = nullptr;
+            while(isdigit(*p)) p++;
+
             for(;*++p != '\n';p++)
             {
+                while(isspace(*p)) p++;
                 tmp = new CourseTree;
-                tmp->CourseId = *p;
+                sscanf(p,"%d",&id);
+                tmp->CourseId = id;
                 tmp->child = nullptr;
                 tmp->sibling = nullptr;
                 pre->sibling = tmp;
                 pre = tmp;
+                while(isdigit(*p)) p++;
             }
         }
     }
