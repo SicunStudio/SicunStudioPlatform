@@ -70,6 +70,7 @@ void MainWindow::on_FunCourseTree_triggered()
         else if((p = QueryCourse(name)) == nullptr)
         {
             QMessageBox::information(this,"error","查无此课程");
+            return;
         }
         else
         {
