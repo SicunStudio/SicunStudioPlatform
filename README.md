@@ -6,8 +6,8 @@ A platform for SicunStudio, collecting kinds of functions as a PC-end applicatio
 Software based on Qt C/C++, HTML, CSS, Javascript. Support service and functions for members in SicunStudio, Obey MIT LICENSE.
 
 ## Developers
-* [MingZhang](https://github.com/minghust)
-* [Yuchen Shi](https://github.com/aiifabbf)
+* [minghust](https://github.com/minghust)
+* [aiifabbf](https://github.com/aiifabbf)
 
 
 ## Develope Environment
