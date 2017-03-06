@@ -39,15 +39,45 @@ Language: C/C++
 
 
 ## Getting Data
+some struggling
 
 ## Data Structure
 ##### Course Tree
-Kid－brother－tree
+**Child-Sibling-Tree**
+
+	
+	typedef struct coursetree
+	{
+    	int CourseId;               // course id mapping with its name
+    	struct coursetree *child;   // left child
+    	struct coursetree *sibling; // right sibling
+	}CourseTree;
+	
+**Stack**
+
+	// using stack for non-recursive way to create and search tree
+	using std::stack;
+	stack<CourseTree>CourseStack;  
+	
+**QMap**
+
+	// using QMap for storing <QString-int> info.
+	QMap<QString, int> CourseMap;
+
 
 ## Data Processing
+#### Course Tree
+- **Reading** data(pure courseID) from file to main memory if function was started.
+- **Creating** Child-Sibling-Tree.<br \>
+- **Mapping** the courseName given by users with each ID, and use the ID to search for root node in the tree told above.<br \>
+- **Converting** root information to a info-set(I called it so)which will be shown by front-end.
 
 ## Data Visualization
 
+## Algorithm
+
+- Non-recursive searching tree. T(n) = O(N).
+ 
 ## PC-end UI
 
 ## Web Page UI
